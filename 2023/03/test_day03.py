@@ -1,6 +1,6 @@
 import pytest
 
-from day03_1 import is_symbol, is_adjacent_to_symbol, find_numbers
+from day03_lib import is_symbol, is_adjacent_to_symbol, find_numbers
 
 TEST_MATRIX = [
     ".........232.633....",
@@ -55,4 +55,4 @@ def test_find_numbers_last():
             last = next(numbers)
         except StopIteration:
             break
-    assert last == ("278", 29, 17, 20)
+    assert last == ("278", 9, 17, 20)
