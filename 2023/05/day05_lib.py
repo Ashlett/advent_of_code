@@ -12,7 +12,10 @@ def get_lowest_location(almanac):
     locations = []
     for seed in seeds:
         for map_name in map_order:
-            seed = maps[map_name].get(seed, seed)
+            for destination, source, length in maps[map_name]:
+                if seed in range(source, source + length):
+                    seed += destination - source
+                    break
         locations.append(seed)
     return min(locations)
 
@@ -28,13 +31,10 @@ def parse_almanac(almanac: str):
             seeds = [int(seed) for seed in seeds.split()]
         elif line.endswith("map:"):
             in_map = line.split()[0]
-            maps[in_map] = {}
+            maps[in_map] = []
         elif line == "":
             in_map = None
         elif in_map:
             destination, source, length = [int(num) for num in line.split()]
-            destination_range = range(destination, destination + length)
-            source_range = range(source, source + length)
-            for x, y in zip(source_range, destination_range):
-                maps[in_map][x] = y
+            maps[in_map].append((destination, source, length))
     return seeds, maps
