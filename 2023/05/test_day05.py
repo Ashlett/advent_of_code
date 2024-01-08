@@ -1,4 +1,4 @@
-from day05_lib import get_lowest_location
+from day05_lib import Almanac, AlmanacV2
 
 TEST_ALMANAC = """seeds: 79 14 55 13
 
@@ -35,5 +35,9 @@ humidity-to-location map:
 56 93 4"""
 
 
-def test_get_lowest_location():
-    assert get_lowest_location(TEST_ALMANAC) == 35
+def test_get_lowest_location_1():
+    assert Almanac(TEST_ALMANAC).get_lowest_location() == 35
+
+
+def test_get_lowest_location_2():
+    assert AlmanacV2(TEST_ALMANAC).get_lowest_location() == 46
