@@ -34,19 +34,37 @@ class Almanac:
     def _get_seeds(self, seed_text):
         return [int(seed) for seed in seed_text.split()]
 
-    def get_location_for_seed(self, seed):
+    def _get_location_for_seed(self, seed):
         for map_name in self.MAP_ORDER:
             for destination, source, length in self.maps[map_name]:
-                if seed in range(source, source + length):
+                if source <= seed < source + length:
                     seed += destination - source
                     break
         return seed
+    #
+    # def _seeds_for_locations_from_lowest(self):
+    #     location = 0
+    #     while True:
+    #         seed = location
+    #         for map_name in reversed(self.MAP_ORDER):
+    #             for destination, source, length in self.maps[map_name]:
+    #                 if seed in range(destination, destination + length):
+    #                     seed += source - destination
+    #         yield seed, location
+    #         location += 1
 
     def get_lowest_location(self):
-        locations = []
+        # for seed, location in self._seeds_for_locations_from_lowest():
+        #     if seed in self.seeds:
+        #         return location
+        min_location = None
         for seed in self.seeds:
-            locations.append(self.get_location_for_seed(seed))
-        return min(locations)
+            location = self._get_location_for_seed(seed)
+            if min_location is None:
+                min_location = location
+            else:
+                min_location = min(location, min_location)
+        return min_location
 
 
 class AlmanacV2(Almanac):
