@@ -11,7 +11,7 @@ def get_ways_to_win_one_race(time: int, distance: int) -> int:
     return num_ways_to_win
 
 
-def get_ways_to_win_multiplied(race_input: str) -> int:
+def part_1(race_input: str) -> int:
     time_line, distance_line = race_input.splitlines(keepends=False)
     times = [int(t) for t in time_line.split()[1:]]
     distances = [int(d) for d in distance_line.split()[1:]]
@@ -23,7 +23,7 @@ def get_ways_to_win_multiplied(race_input: str) -> int:
     return num_ways_to_win_multiplied
 
 
-def get_ways_to_win_long_race(race_input: str) -> int:
+def part_2(race_input: str) -> int:
     time_line, distance_line = race_input.splitlines(keepends=False)
     time = int("".join([t for t in time_line.split()[1:]]))
     distance = int("".join([t for t in distance_line.split()[1:]]))

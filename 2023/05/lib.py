@@ -76,3 +76,11 @@ class AlmanacV2(Almanac):
             start, length = numbers[i:i + 2]
             ranges.append(range(start, start + length))
         return chain(*ranges)
+
+
+def part_1(almanac_text: str):
+    return Almanac(almanac_text).get_lowest_location()
+
+
+def part_2(almanac_text: str):
+    return AlmanacV2(almanac_text).get_lowest_location()

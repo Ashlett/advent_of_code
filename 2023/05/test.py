@@ -1,6 +1,6 @@
-from day05_lib import Almanac, AlmanacV2
+from lib import part_1, part_2
 
-TEST_ALMANAC = """seeds: 79 14 55 13
+TEST_INPUT = """seeds: 79 14 55 13
 
 seed-to-soil map:
 50 98 2
@@ -36,8 +36,8 @@ humidity-to-location map:
 
 
 def test_get_lowest_location_1():
-    assert Almanac(TEST_ALMANAC).get_lowest_location() == 35
+    assert part_1(TEST_INPUT) == 35
 
 
 def test_get_lowest_location_2():
-    assert AlmanacV2(TEST_ALMANAC).get_lowest_location() == 46
+    assert part_2(TEST_INPUT) == 46
