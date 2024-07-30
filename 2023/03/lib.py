@@ -1,7 +1,25 @@
+def part_1(input_text: str) -> int:
+    lines = input_text.splitlines()
+    result = 0
+    for number, line_number, start, end in find_numbers(lines):
+        if is_adjacent_to_symbol(lines, line_number, start, end):
+            result += int(number)
+    return result
 
-def read_input():
-    with open("input_day3.txt", "r") as f:
-        return f.read().splitlines(keepends=False)
+
+def part_2(input_text: str) -> int:
+    lines = input_text.splitlines()
+    gears = {}
+    for number, line_number, start, end in find_numbers(lines):
+        for x, y in find_neighbors(lines, line_number, start, end):
+            if lines[x][y] == "*":
+                gears.setdefault((x, y), []).append(int(number))
+
+    result = 0
+    for gear, numbers in gears.items():
+        if len(numbers) == 2:
+            result += numbers[0] * numbers[1]
+    return result
 
 
 def is_symbol(char):

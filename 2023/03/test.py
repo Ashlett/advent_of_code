@@ -1,6 +1,18 @@
 import pytest
 
-from day03_lib import is_symbol, is_adjacent_to_symbol, find_numbers
+from lib import is_symbol, is_adjacent_to_symbol, find_numbers, part_1, part_2
+
+TEST_INPUT = """467..114..
+...*......
+..35..633.
+......#...
+617*......
+.....+.58.
+..592.....
+......755.
+...$.*....
+.664.598..
+"""
 
 TEST_MATRIX = [
     ".........232.633....",
@@ -14,6 +26,14 @@ TEST_MATRIX = [
     "815*....921.........",
     ".874..497........278",
 ]
+
+
+def test_part_1():
+    assert part_1(TEST_INPUT) == 4361
+
+
+def test_part_2():
+    assert part_2(TEST_INPUT) == 467835
 
 
 @pytest.mark.parametrize(

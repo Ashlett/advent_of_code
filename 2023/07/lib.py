@@ -33,7 +33,7 @@ def sort_order_with_jokers(hand):
 
 
 def get_total_winnings(input_text: str, sort_order_function) -> int:
-    hands_and_bids = [line.split() for line in input_text.splitlines(keepends=False)]
+    hands_and_bids = [line.split() for line in input_text.splitlines()]
     hands_and_bids.sort(key=lambda x: sort_order_function(x[0]), reverse=True)
 
     total_winnings = 0

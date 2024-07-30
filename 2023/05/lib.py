@@ -14,7 +14,7 @@ class Almanac:
     ]
 
     def __init__(self, almanac_text: str):
-        almanac = almanac_text.splitlines(keepends=False)
+        almanac = almanac_text.splitlines()
         in_map = None
         self.maps = {}
         for line in almanac:
