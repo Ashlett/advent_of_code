@@ -1,5 +1,5 @@
 import pytest
-from lib import part_1, part_2, expand_universe, calculate_shortest_path
+from lib import expand_universe, calculate_shortest_path, sum_shortest_paths_in_expanded_universe
 
 TEST_INPUT = """...#......
 .......#..
@@ -28,12 +28,16 @@ TEST_INPUT_EXPANDED = """....#........
 """
 
 
-def test_part_1():
-    assert part_1(TEST_INPUT) == 374
-
-
-def test_part_2():
-    assert part_2(TEST_INPUT) == 1
+@pytest.mark.parametrize(
+    "expansion_factor, expected_sum",
+    (
+        (2, 374),
+        (10, 1030),
+        (100, 8410),
+    )
+)
+def test_sum_shortest_paths_in_expanded_universe(expansion_factor, expected_sum):
+    assert sum_shortest_paths_in_expanded_universe(TEST_INPUT, expansion_factor) == expected_sum
 
 
 def test_expand_universe():

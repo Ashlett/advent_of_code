@@ -1,5 +1,13 @@
 def part_1(input_text: str) -> int:
-    expanded_universe = expand_universe(input_text)
+    return sum_shortest_paths_in_expanded_universe(input_text, 2)
+
+
+def part_2(input_text: str) -> int:
+    return sum_shortest_paths_in_expanded_universe(input_text, 1000000)
+
+
+def sum_shortest_paths_in_expanded_universe(input_text: str, expansion_factor: int = 2):
+    expanded_universe = expand_universe(input_text, expansion_factor)
 
     galaxies = []
     for y, line in enumerate(expanded_universe.splitlines()):
@@ -17,16 +25,13 @@ def part_1(input_text: str) -> int:
     return sum_shortest_paths
 
 
-def part_2(input_text: str) -> int:
-    return 0
-
-
-def expand_universe(input_text: str) -> str:
+def expand_universe(input_text: str, expansion_factor: int = 2) -> str:
     expanded_rows = []
 
     for line in input_text.splitlines():
         if all([char == "." for char in line]):
-            expanded_rows.append(line)
+            for _ in range(expansion_factor - 1):
+                expanded_rows.append(line)
         expanded_rows.append(line)
 
     columns_to_expand = []
@@ -39,7 +44,7 @@ def expand_universe(input_text: str) -> str:
         expanded_line = ""
         for i, char in enumerate(line):
             if i in columns_to_expand:
-                expanded_line += "."
+                expanded_line += "." * (expansion_factor - 1)
             expanded_line += char
         expanded_rows_and_columns.append(expanded_line)
 
